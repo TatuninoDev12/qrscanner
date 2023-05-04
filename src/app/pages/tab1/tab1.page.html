@@ -1,0 +1,46 @@
+<ion-content [fullscreen]="true" no-bounce>
+
+  <div class="ion-slides">
+    <div *ngIf="!stopActive" class="logo">
+        <ion-icon slot="icon-only" name="qr-code-outline"></ion-icon>
+
+    </div>
+    <ion-grid>
+        <ion-row>
+
+                <ion-button expand="full"
+                            fill="outline"
+                            size="large"
+                            shape="round"
+                            (click)="scan()"
+                            *ngIf="!stopActive">
+                    <ion-label>Scan Code</ion-label>
+                    <ion-icon slot="end" name="qr-code-outline" size="large"></ion-icon>
+           
+            </ion-button>
+
+            <ion-button expand="full"
+                        fill="outline"
+                        size="large"
+                        shape="round"
+                        (click)="createQR()"
+                        *ngIf="!stopActive">
+                <ion-label>Create Code</ion-label>
+                <ion-icon slot="end" name="qr-code-outline" size="large"></ion-icon>
+            </ion-button>
+            <ion-button expand="full"
+                        fill="solid"
+                        size="large"
+                        shape="round"
+                        (click)="stopScan()"
+                        *ngIf="stopActive"
+                        class="stopCode">
+                <ion-label>Stop Scan</ion-label>
+                <ion-icon slot="end" name="qr-code-outline" size="large"></ion-icon>
+            </ion-button>
+
+        </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>

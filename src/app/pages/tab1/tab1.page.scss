@@ -1,0 +1,48 @@
+.ion-slides{
+    width: 100%;
+    height: 100%;
+}
+.logo {
+    width: 100%;
+    height: 50%;
+    position: relative;
+    align-content: center;
+    justify-content: center;
+    display: flex;
+    top: 220px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+
+.logo > ion-icon {
+    font-size: 140px !important;
+}
+
+// ion-col {
+//     height: 20% !important;
+// }
+
+ion-content {
+    --overflow: hidden;
+}
+
+ion-button {
+    top: 30px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: relative !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 20px;
+}
+.stopCode {
+    position: absolute !important;
+    bottom: 110px !important;
+    width: 90%;
+}

@@ -1,0 +1,35 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      History
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="sendMail()" color="primary">
+        <ion-icon slot="icon-only" name="send-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list>
+
+    <ion-item-sliding *ngFor="let register of dataLocal.saved">
+  
+      <ion-item (click)="openRegister(register)" detail>
+        <ion-icon color="primary" slot="start" [name]="register.icon"></ion-icon>
+        <ion-label>
+          <h2>{{register.text}}</h2>
+          <p>{{register.created | date: 'medium'}}</p>
+        </ion-label>
+      </ion-item>
+  
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="deleteRegister(register)">Delete</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+  </ion-list>
+  
+</ion-content>
