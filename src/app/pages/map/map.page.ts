@@ -27,7 +27,7 @@ export class MapPage implements OnInit {
     let maps = new mapboxgl.Map({
       style: 'mapbox://styles/mapbox/light-v11',
       center: [this.lng, this.lat],
-      zoom: 15.5,
+      zoom: 17.5,
       pitch: 45,
       bearing: -17.6,
       container: 'map',

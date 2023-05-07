@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Location</ion-title>
+    <ion-icon slot="start" name="close" size="large" color="primary" (click)="closeModal()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card id="map1">
+    <div id="geocoder" class="geocoder"></div>
+  </ion-card>
+  <ion-button (click)="generar()" expand="full" size="large" shape="round" [class.button-disabled]="finishSearch">
+    Generar
+  </ion-button>
+  
+</ion-content>

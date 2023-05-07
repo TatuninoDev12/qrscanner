@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear QR</ion-title>
+    <ion-back-button defaultHref="/tabs/tab1" text=" " color="primary" slot="start"></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-segment mode="md" [(ngModel)] = "elementType">
+    <ion-segment-button value="url">
+      <ion-label>URL</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="location">
+      <ion-label>Location</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="wifi">
+      <ion-label>WIFI</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="elementType === 'url'">
+    <br/>
+    <ion-input style="text-align: center; border: solid 1px #ffff; border-radius: 25px;" type="text" placeholder="Write your QR" [(ngModel)]="qrdata"></ion-input>
+    <ion-button class="generate" (click)="createURL()" expand="full" mode="ios" fill="outline" shape="round">Generate</ion-button>
+
+    <ion-card mode="ios" *ngFor="let item of createCodeURL">
+      <ngx-qrcode class="qr"
+        [value]="item.qr">
+      </ngx-qrcode>
+      <ion-card-content>
+        Your QR code: {{ item.qr }}
+        <ion-button mode="md" class="btns" (click)="shared(item.qr)" expand="block" shape="round">
+          Compartir
+          <ion-icon slot="end" name="paper-plane"></ion-icon>
+        </ion-button>
+        <ion-button mode="md" class="btns" (click)="clearURL(item.id)" expand="block" color="danger" shape="round">
+          Clear
+          <ion-icon slot="end" name="trash"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="elementType === 'location'">
+    <ion-button class="generate" (click)="location()" expand="full" mode="ios" fill="outline" shape="round">Generate</ion-button>
+
+    <ion-card mode="ios" *ngFor="let item of createCodeGEO">
+      <ngx-qrcode class="qr"
+        [value]="item.qr"
+        cssClass="qr">
+      </ngx-qrcode>
+      <ion-card-content>
+        <strong>Your QR code:</strong> {{ item.location }}
+        <ion-button class="btns" (click)="shared(item.location)" expand="block" mode="md"  shape="round">
+          Compartir
+          <ion-icon slot="end" name="paper-plane"></ion-icon>
+        </ion-button>
+        <ion-button class="btns" (click)="clearGEO(item.id)" expand="block" color="danger" mode="md" shape="round">
+          Clear
+          <ion-icon slot="end" name="trash"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  
+  
+
+</ion-content>

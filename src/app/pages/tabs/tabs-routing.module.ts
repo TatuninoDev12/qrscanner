@@ -9,7 +9,17 @@ const routes: Routes = [
     children: [
       {
         path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+          },
+          {
+            path:'create-qr',
+            loadChildren: () => import('../create-qr/create-qr.module').then(m => m.CreateQRPageModule)
+          }
+        ]
+        
       },
       {
         path: 'tab2',

@@ -1,6 +1,7 @@
 
 import { Component } from '@angular/core';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { NavController } from '@ionic/angular';
 import { DataLocalService } from 'src/app/services/data-local.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class Tab1Page {
 
   stopActive = false
 
-  constructor( private dataLocal: DataLocalService) {}
+  constructor( private dataLocal: DataLocalService, 
+               private navCtrl: NavController) {}
 
   ionViewEnter() {
 
@@ -55,7 +57,7 @@ export class Tab1Page {
   };
 
   createQR() {
-    
+    this.navCtrl.navigateForward('/tabs/tab1/create-qr');
   }
 
 }
