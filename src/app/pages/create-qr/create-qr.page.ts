@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { ModalController } from '@ionic/angular';
 import { ViewMapPage } from '../view-map/view-map.page';
 import { LoadingController } from '@ionic/angular';
 import  getImageQR  from '../../services/getImageQR';
 import { UtilsService } from 'src/app/services/utils.service';
+import QRCode from 'qrcode'
 @Component({
   selector: 'app-create-qr',
   templateUrl: './create-qr.page.html',
   styleUrls: ['./create-qr.page.scss'],
 })
-export class CreateQRPage implements OnInit {
+export class CreateQRPage  {
 
   qrdata: any;
   createCodeURL: any[] = [];
@@ -22,17 +23,15 @@ export class CreateQRPage implements OnInit {
   geo: any;
   load:any;
   locationName: any;
-  elementType: 'url' | 'location' | 'wifi' = 'url';
+  elementType: 'url' | 'location' = 'url';
 
   constructor(private storage: Storage,
               private modalCtrl: ModalController,
               private loadingCtrl: LoadingController,
-              private utils: UtilsService) { 
+              private utils: UtilsService,) { 
                 this.cargarStorage();
               }
 
-  ngOnInit() {
-  }
 
   async location() {
     this.presentLoading();
@@ -64,14 +63,25 @@ export class CreateQRPage implements OnInit {
     })
   }
 
+  getImageQR(data: any) {
+    return new Promise( solve => {
+      QRCode.toDataURL( data ).then(data => {
+        console.log("🚀 ~ file: create-qr.page.ts:70 ~ CreateQRPage ~ awaitQRCode.toDataURL ~ data:", data)
+        solve(data)
+      }) 
+    })
+  }
+
   async createURL() {
     await this.createCodeURL;
     if(this.qrdata){
       this.idURL++;
       const exist = this.createCodeURL.find(reg => reg.id === this.idURL);
+      let img = await this.getImageQR(this.qrdata)
       const data = {
         id: this.idURL,
-        qr: this.qrdata
+        qr: this.qrdata,
+        img: img
       }
       this.createCodeURL.unshift(data);
       this.storage.set('URL_QR',this.createCodeURL);
@@ -90,10 +100,12 @@ export class CreateQRPage implements OnInit {
 
   async createGEO() {
     await this.createCodeGEO;
+    let img = await this.getImageQR(this.geo)
     const data = {
       id: this.idGEO,
       qr: this.geo,
-      location: this.locationName
+      location: this.locationName,
+      img: img
     }
     this.createCodeGEO.unshift(data);
     this.storage.set('GEO_QR',this.createCodeGEO);

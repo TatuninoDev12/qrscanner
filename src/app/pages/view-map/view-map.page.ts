@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular'
 import { MapQrService } from 'src/app/services/map-qr.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { isPlatform } from '@ionic/angular';
 
 @Component({
   selector: 'app-view-map',
@@ -21,20 +22,25 @@ export class ViewMapPage implements OnInit {
 
   ngOnInit() {
     this.mapQR.getMap();
-    window.addEventListener('keyboardDidHide', () => {
-      this.finishSearch = this.mapQR.finishSearch;
-      console.log('sss');
-      
-    });
 
-    //Evaluar como hacer que no aparezca 2 veces la lista de sitios
-    // window.addEventListener('keydown', async (e) => {
-    //   if(e.code === 'Enter') {
-    //     await this.utils.delay(3500)
-    //     this.generar()
-    //   }
-    // });
+    if(isPlatform('capacitor')) {
+      window.addEventListener('keyboardDidHide', () => {
+        this.finishSearch = this.mapQR.finishSearch;
+      });
+    } else {
+      window.addEventListener('keydown', async (e) => {
+        if(e.code === 'Enter') {
+          this.finishSearch = this.mapQR.finishSearch;
+        }
+      });
+      window.addEventListener('mouseup', async (e) => {
+        this.finishSearch = this.mapQR.finishSearch;
+      });
+      window.addEventListener('touchcancel', async (e) => {
+        this.finishSearch = this.mapQR.finishSearch;
+      });
 
+    }
   }
 
   closeModal() {
