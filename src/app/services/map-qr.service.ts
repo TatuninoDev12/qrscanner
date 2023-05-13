@@ -4,6 +4,7 @@ import { UtilsService } from './utils.service';
 import mapboxgl from 'mapbox-gl';
 // import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { environment } from 'src/environments/environment';
+import { isPlatform } from '@ionic/angular';
 
 // declare var mapboxgl: any
 declare var MapboxGeocoder: any;
@@ -37,7 +38,9 @@ export class MapQrService {
     map.on('zoomstart', () => {
 
       this.finishSearch = false;
-      Keyboard.hide();
+      if(isPlatform('capacitor')) {
+        Keyboard.hide();
+      }
 
     });
      

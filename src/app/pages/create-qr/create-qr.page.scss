@@ -12,6 +12,17 @@ ion-card {
     height: 100% !important;
 }
 
+.imgQR {
+    width: 25%;
+    height: 50%;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: auto;
+    padding-top: 1.4rem;
+}
+
 .coordinates {
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
@@ -58,7 +69,16 @@ ion-card {
     align-items: center;
     text-align: center;
     margin: auto;
-    margin-top: 10px;
+    margin-top: 1.5rem;
+}
+
+ion-card-content {
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+a {
+    color: var(--ion-color-primary);
 }
 
 .btns > ion-icon {
@@ -78,7 +98,16 @@ ion-card {
     align-items: center !important;
     margin: auto !important;
 }
-
 .qr > .qrcode >  img {
     width: 50% !important;
+}
+@media screen and (max-width: 3000px) {
+    .imgQR {
+        width: 18%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .imgQR {
+        width: 50%;
+    }
 }
