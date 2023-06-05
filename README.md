@@ -49,7 +49,7 @@ Para instalar todos los paquetes necesarios debe de ejecutar el siguiente comand
 npm install @ionic/cli @angular/cli
 ```
 
-### 🖥️ Installing <a name="install"></a>
+## 🖥️ Installing <a name="install"></a>
 
 Para instalar todas las independencias.
 
@@ -62,7 +62,7 @@ npm install
 ```
 npx ionic capacitor sync
 ```
-### 🏃🏾‍♂️ Run Project <a name = "run"> </a>
+## 🏃🏾‍♂️ Run Project <a name = "run"> </a>
 
 Para correr el projecto seguir los siguientes pasos:
 
